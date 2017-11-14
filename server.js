@@ -2,10 +2,14 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var index = require('./routes/index');
+// 
+//
+// app.get('/', function(req, res){
+//   res.sendFile(__dirname + '/index.html');
+// });
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-});
+app.use('/', index);
 
 io.on('connection', function(socket){
   console.log('a user connected');
